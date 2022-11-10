@@ -9,17 +9,13 @@ navbar_entries:
     url: https://aniketambore.github.io/Blind-75-Dart/
 
 project_entries:
-  - title: Project 1
-    url: overview-post
-    desc: This is an example project, configured in _data/home.yml
+  - title: Big O Cheat Sheet
+    url: big-o-cheat-sheet
+    desc: Big O Cheat Sheet
 
   - title: Project 2
     url: overview-post
     desc: Projects are shown in card layout
-
-  - title: Project 3
-    url: overview-post
-    desc: You can control visibility from _config.yml file
 
 # old_project_entries:
 #   - title: Soopr

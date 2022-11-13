@@ -13,9 +13,9 @@ project_entries:
     url: big-o-cheat-sheet
     desc: Big O Cheat Sheet
 
-  - title: Project 2
-    url: overview-post
-    desc: Projects are shown in card layout
+  - title: Interview Cheat Sheet
+    url: interview-cheat-sheet
+    desc: Interview Cheat Sheet
 
 # old_project_entries:
 #   - title: Soopr

@@ -85,6 +85,55 @@ So ultimately **O(2S)** drop the constants we get **O(S)** or **O(n)** where `n`
 
 Space complexity = **O(s)** for first string and **O(s)** for another string. So total **O(2s)** ultimately -> **O(s)**
 
+## Solution 3: O(n) Time and Space
+
+```dart
+class Solution {
+  bool isAnagram(String s, String t) {
+      // Check Input
+      if(s.length != t.length) return false;
+
+      final az = 'az'.codeUnits;    // [97, 122]
+      final charList = List<int>.generate(az.last - az.first + 1 , (index) => 0);   // [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+      for(int i=0 ; i<s.length ; i++){
+          var sIndex = s.codeUnitAt(i) - az.first;
+          charList[sIndex] += 1;
+
+          var tIndex = t.codeUnitAt(i) - az.first;
+          charList[tIndex] -= 1;
+      }
+
+      return charList.every((e) => e == 0);
+  }
+}
+```
+
+The Unicode standard tells us that the letters of a particular word should be mapped to numbers and the number associated with each character is called a **code point**.
+
+Example: `a = 97`, `b = 98`, `c = 99`, ..., `z = 122`
+
+- `codeUnitAt(index)`: Returns the 16-bit UTF-16 code unit at the given `index`.
+    - Example:
+    ```dart
+    void main(){
+        var str = 'anagram'.codeUnitAt(2);
+        print(str); // 97
+    }
+    ```
+- `generate()`: Creates a list of the given length and fills each position according with the value returned by the generator.
+    - Example:
+    ```dart
+    void main(){
+        final charList = List<int>.generate(26 , (index) => 0);
+        print(charList);  // [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    }
+    ```
+
+
+- `every()`: returns a boolean indicating if every element of the collection satisfies the given condition.
+
+
 Reference:
 - [List use of double dot (.) in dart?](https://stackoverflow.com/questions/49447736/list-use-of-double-dot-in-dart)
 - [Valid Anagram - Leetcode 242 - Python](https://www.youtube.com/watch?v=9UtInBqnCgA)

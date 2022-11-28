@@ -34,4 +34,4 @@ tags: [cheat sheet, complexity]
 - Allocations
 
 ## Reference
-- https://www.bigocheatsheet.com/
+- [https://www.bigocheatsheet.com/](https://www.bigocheatsheet.com/)

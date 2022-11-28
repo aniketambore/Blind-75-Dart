@@ -33,6 +33,9 @@ Output: true
 - `1 <= nums.length <= 10^5`
 - `-10^9 <= nums[i] <= 10^9`
 
+## Hint
+hashset to get unique values in array, to check for duplicates easily
+
 ## Solution
 
 ```dart

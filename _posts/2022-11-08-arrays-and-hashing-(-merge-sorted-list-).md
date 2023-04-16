@@ -17,7 +17,7 @@ Output:
 result = [0, 3, 4, 4, 6, 30, 31]
 ```
 
-## Solution
+## Solution 1
 
 ### Merge Sort Algorithm
 The idea behind merge sort is to **divide and conquer** — to break up a big problem into several smaller, easier-to-solve problems and then combine the solutions into a final result. The merge sort mantra is to split first and merge later.
@@ -118,3 +118,51 @@ void main(){
   print(result);    // [0, 3, 4, 4, 6, 30, 31]
 }
 ```
+
+## Solution 2
+
+```dart
+void main(){
+  const listA = <int>[0,3,4,31];
+  const listB = <int>[4,6,30];
+  final result = mergeSorted(listA, listB);
+  print('[+] result: $result');
+}
+
+List<int> mergeSorted(List<int> listA, List<int> listB){
+  final result = <int>[];
+  int i = 0;
+  int j = 0;
+  
+  while(i < listA.length && j < listB.length){
+    if(listA[i] < listB[j]){
+      result.add(listA[i]);
+      i++;
+    } else if(listB[j] < listA[i]){
+      result.add(listB[j]);
+      j++;
+    } else{
+      result.add(listA[i]);
+      result.add(listB[j]);
+      i++;
+      j++;
+    }
+  }
+  
+  while(i < listA.length){
+    result.add(listA[i]);
+    i++;
+  }
+  
+  while(j < listB.length){
+    result.add(listB[j]);
+    j++;
+  }
+  
+  return result;
+}
+```
+
+In terms of complexity, the time complexity of the `mergeSorted()` function is **O(N)**, where **N** is the total number of elements in `listA` and `listB`. This is because the function iterates through both input lists once, comparing and merging elements in a sorted manner. The two `while` loops at the end of the function that handle any remaining elements in either `listA` or `listB` take constant time, as they iterate through the remaining elements linearly.
+
+The space complexity of the `mergeSorted()` function is **O(N)**, as the result list stores all the merged elements from `listA` and `listB`. In the worst case, where all elements in `listA` and `listB` are distinct, the size of result would be **2N**, which is still considered **O(N)**.

@@ -70,3 +70,34 @@ class Solution {
 
 # Reference
 - [Group Anagrams - Categorize Strings by Count - Leetcode 49](https://www.youtube.com/watch?v=vzdNOK2oB2E)
+
+## Solution 2
+
+```dart
+class Solution {
+  List<List<String>> groupAnagrams(List<String> strs) {
+    final anagramMap = Map<String, List<String>>();
+
+    // Iterate through each string in strs
+    for (int i = 0; i < strs.length; i++) {
+      String str = strs[i];
+
+      // Sort the characters in the string to use as a key in the hash table
+      String sortedKey = String.fromCharCodes(str.runes.toList()..sort());
+
+      // If the sortedKey is not present in the hash table, add it with an empty list as the value
+      if (!anagramMap.containsKey(sortedKey)) {
+        anagramMap[sortedKey] = [];
+      }
+
+      // Add the original string to the list of values associated with the sortedKey
+      anagramMap[sortedKey].add(str);
+    }
+
+    // Convert the values of the hash table to lists and return as the final result
+    return anagramMap.values.toList();
+  }
+}
+```
+
+The time complexity of this solution depends on the length of the input array and the length of the longest string in `strs`. Sorting the characters in each string takes **O(K log K)** time, where `K` is the length of the longest string. So the overall time complexity is **O(NK log K)**, where `N` is the length of the input array. The space complexity is **O(N)** as we need to store the anagram groups in a hash table.

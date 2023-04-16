@@ -133,6 +133,43 @@ Example: `a = 97`, `b = 98`, `c = 99`, ..., `z = 122`
 
 - `every()`: returns a boolean indicating if every element of the collection satisfies the given condition.
 
+## Solution 4: O(n) Time and O(1) space
+
+```dart
+class Solution {
+  bool isAnagram(String s, String t) {
+    if (s.length != t.length) return false; // If the lengths are not equal, they cannot be anagrams
+
+    final countMap = Map<String, int>();
+
+    // Count occurrences of characters in string s
+    for (int i = 0; i < s.length; i++) {
+      String char = s[i];
+      if (countMap.containsKey(char)) {
+        countMap[char]++;
+      } else {
+        countMap[char] = 1;
+      }
+    }
+
+    // Compare occurrences of characters in string t with the counts in countMap
+    for (int i = 0; i < t.length; i++) {
+      String char = t[i];
+      if (countMap.containsKey(char) && countMap[char] > 0) {
+        countMap[char]--;
+      } else {
+        return false;
+      }
+    }
+
+    return true;
+  }
+}
+```
+
+In this solution, we use a hash table (`countMap`) to store the counts of characters in string `s`. We iterate through `s` and increment the count of each character in `countMap`. Then, we iterate through string `t` and decrement the count of each character in `countMap` if it exists and has a count greater than `0`. If at any point we encounter a character in `t` that does not exist in `countMap` or has a count of `0`, we can immediately return `false` as it means `t` is not an anagram of `s`. If we successfully iterate through both strings and all counts in `countMap` are zero, then `t` is an anagram of `s`.
+
+The time complexity of this solution is **O(N)**, where N is the length of the strings, as we need to iterate through both strings once. The space complexity is **O(1)** as the hash table (`countMap`) will have a constant number of entries since the character set is assumed to be fixed.
 
 Reference:
 - [List use of double dot (.) in dart?](https://stackoverflow.com/questions/49447736/list-use-of-double-dot-in-dart)
